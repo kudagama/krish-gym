@@ -94,12 +94,19 @@
 
     <!-- Hero Section -->
     <header id="home" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="images/gallery_1.jpg" class="w-full h-full object-cover opacity-40 mix-blend-overlay"
+                alt="Hero Background">
+            <div class="absolute inset-0 bg-gradient-to-b from-[#0b0f19] via-[#0b0f19]/80 to-[#0b0f19]"></div>
+        </div>
+
         <!-- Background Glows -->
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
             <div
-                class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-purple-900/30 rounded-full blur-[120px] animate-pulse">
+                class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-purple-900/40 rounded-full blur-[120px] animate-pulse">
             </div>
-            <div class="absolute bottom-[10%] right-[-10%] w-[50%] h-[50%] bg-blue-900/20 rounded-full blur-[120px] animate-pulse"
+            <div class="absolute bottom-[10%] right-[-10%] w-[50%] h-[50%] bg-blue-900/30 rounded-full blur-[120px] animate-pulse"
                 style="animation-delay: 1s;">
             </div>
         </div>
@@ -381,7 +388,8 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 h-[600px] md:h-[500px]">
                 <!-- Item 1 (Large Left) -->
-                <div class="lg:col-span-2 lg:row-span-2 relative group overflow-hidden rounded-2xl cursor-pointer">
+                <div class="lg:col-span-2 lg:row-span-2 relative group overflow-hidden rounded-2xl cursor-pointer"
+                    onclick="openLightbox('images/gallery_1.jpg')">
                     <img src="images/gallery_1.jpg"
                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         alt="Gym Interior">
@@ -392,7 +400,8 @@
                 </div>
 
                 <!-- Item 2 -->
-                <div class="relative group overflow-hidden rounded-2xl cursor-pointer">
+                <div class="relative group overflow-hidden rounded-2xl cursor-pointer"
+                    onclick="openLightbox('images/gallery_2.jpg')">
                     <img src="images/gallery_2.jpg"
                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         alt="Equipment">
@@ -403,7 +412,8 @@
                 </div>
 
                 <!-- Item 3 -->
-                <div class="relative group overflow-hidden rounded-2xl cursor-pointer">
+                <div class="relative group overflow-hidden rounded-2xl cursor-pointer"
+                    onclick="openLightbox('images/gallery_3.jpg')">
                     <img src="images/gallery_3.jpg"
                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         alt="Training">
@@ -414,7 +424,8 @@
                 </div>
 
                 <!-- Item 4 -->
-                <div class="relative group overflow-hidden rounded-2xl cursor-pointer">
+                <div class="relative group overflow-hidden rounded-2xl cursor-pointer"
+                    onclick="openLightbox('images/gallery_4.jpg')">
                     <img src="images/gallery_4.jpg"
                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         alt="Sparring">
@@ -425,7 +436,8 @@
                 </div>
 
                 <!-- Item 5 -->
-                <div class="relative group overflow-hidden rounded-2xl cursor-pointer">
+                <div class="relative group overflow-hidden rounded-2xl cursor-pointer"
+                    onclick="openLightbox('images/gallery_5.jpg')">
                     <img src="images/gallery_5.jpg"
                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         alt="Gym Vibes">
@@ -550,14 +562,18 @@
         </div>
     </footer>
 
+    <div id="lightbox"
+        class="fixed inset-0 z-[60] bg-black/90 hidden flex items-center justify-center p-4 backdrop-blur-sm"
+        onclick="closeLightbox()">
+        <button
+            class="absolute top-6 right-6 text-white text-4xl hover:text-gray-300 transition-colors">&times;</button>
+        <img id="lightbox-img" src=""
+            class="max-w-full max-h-[90vh] rounded-xl shadow-2xl transform scale-90 transition-transform duration-300"
+            onclick="event.stopPropagation()">
+    </div>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({
-            once: true,
-            offset: 100,
-            duration: 800,
-            easing: 'ease-out-cubic',
-        });
         AOS.init({
             once: true,
             offset: 100,
@@ -572,15 +588,51 @@
         const mobileLinks = document.querySelectorAll('.mobile-link');
 
         function toggleMenu() {
-            mobileMenu.classList.toggle('translate-x-full');
-            document.body.classList.toggle('overflow-hidden');
+            if (mobileMenu) {
+                mobileMenu.classList.toggle('translate-x-full');
+                document.body.classList.toggle('overflow-hidden');
+            }
         }
 
-        mobileMenuBtn.addEventListener('click', toggleMenu);
-        closeMenuBtn.addEventListener('click', toggleMenu);
+        if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', toggleMenu);
+        if (closeMenuBtn) closeMenuBtn.addEventListener('click', toggleMenu);
 
         mobileLinks.forEach(link => {
             link.addEventListener('click', toggleMenu);
+        });
+
+        // Lightbox Logic
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        function openLightbox(src) {
+            if (lightbox && lightboxImg) {
+                lightboxImg.src = src;
+                lightbox.classList.remove('hidden');
+                setTimeout(() => {
+                    lightboxImg.classList.remove('scale-90');
+                    lightboxImg.classList.add('scale-100');
+                }, 10);
+                document.body.classList.add('overflow-hidden');
+            }
+        }
+
+        function closeLightbox() {
+            if (lightbox && lightboxImg) {
+                lightboxImg.classList.remove('scale-100');
+                lightboxImg.classList.add('scale-90');
+                setTimeout(() => {
+                    lightbox.classList.add('hidden');
+                }, 300);
+                document.body.classList.remove('overflow-hidden');
+            }
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', function (event) {
+            if (event.key === "Escape") {
+                closeLightbox();
+            }
         });
     </script>
     <style>
