@@ -78,34 +78,36 @@ function addLogEntry(name, id, type, daysRemaining) {
 
     const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     const isCheckIn = type === "Check In";
-    const statusColor = isCheckIn ? "text-green-600 bg-green-50" : "text-orange-600 bg-orange-50";
-    const rowBg = isCheckIn ? "bg-purple-50" : "bg-orange-50";
 
-    // Payment Badge Logic
+    // Dark Theme Colors
+    const statusColor = isCheckIn ? "text-green-400 bg-green-900/30" : "text-orange-400 bg-orange-900/30";
+    const rowBg = isCheckIn ? "bg-white/10" : "bg-white/5";
+
+    // Payment Badge Logic (Dark Theme)
     let paymentBadge = "";
     if (isCheckIn) {
         if (daysRemaining <= 3) {
-            paymentBadge = `<span class="ml-2 text-xs font-bold text-red-600 bg-red-100 px-2 py-0.5 rounded border border-red-200">Due: ${daysRemaining} days</span>`;
+            paymentBadge = `<span class="ml-2 text-xs font-bold text-red-400 bg-red-900/30 px-2 py-0.5 rounded border border-red-500/30">Due: ${daysRemaining} days</span>`;
         } else if (daysRemaining <= 7) {
-            paymentBadge = `<span class="ml-2 text-xs font-bold text-yellow-600 bg-yellow-100 px-2 py-0.5 rounded border border-yellow-200">Due: ${daysRemaining} days</span>`;
+            paymentBadge = `<span class="ml-2 text-xs font-bold text-yellow-400 bg-yellow-900/30 px-2 py-0.5 rounded border border-yellow-500/30">Due: ${daysRemaining} days</span>`;
         } else {
-            paymentBadge = `<span class="ml-2 text-xs font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded border border-gray-200">${daysRemaining} days left</span>`;
+            paymentBadge = `<span class="ml-2 text-xs font-bold text-gray-400 bg-gray-700/30 px-2 py-0.5 rounded border border-gray-600/30">${daysRemaining} days left</span>`;
         }
     }
 
     const row = `
-        <tr class="border-b border-gray-100 ${rowBg} animate-pulse">
-            <td class="px-6 py-4 flex items-center">
-                <div class="h-10 w-10 rounded-full bg-brand text-white flex items-center justify-center font-bold mr-3">
+        <tr class="border-b border-white/5 ${rowBg} animate-pulse">
+            <td class="px-5 py-4 md:px-8 md:py-5 flex items-center">
+                <div class="h-10 w-10 md:h-12 md:w-12 rounded-full bg-brand text-gray-900 flex items-center justify-center font-bold mr-3 md:mr-4 text-sm md:text-lg">
                     ${name.charAt(0)}
                 </div>
                 <div>
-                    <p class="font-bold text-gray-800">${name} ${paymentBadge}</p>
-                    <p class="text-xs text-gray-500">ID: ${id}</p>
+                    <p class="font-bold text-gray-200 text-base md:text-lg">${name} ${paymentBadge}</p>
+                    <p class="text-xs md:text-sm text-gray-400">ID: ${id}</p>
                 </div>
             </td>
-            <td class="px-6 py-4 text-right">
-                <p class="text-gray-800 font-mono">${time}</p>
+            <td class="px-5 py-4 md:px-8 md:py-5 text-right">
+                <p class="text-gray-300 font-mono text-sm md:text-lg">${time}</p>
                 <span class="text-xs font-bold px-2 py-1 rounded ${statusColor}">${type}</span>
             </td>
         </tr>

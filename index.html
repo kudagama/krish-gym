@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Antigravity Fitness - Check-In Kiosk</title>
+    <title>Krish Combat - Check-In Kiosk</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
@@ -37,26 +37,26 @@
         <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-900/20 rounded-full blur-[120px]"></div>
     </div>
 
-    <main class="flex-1 flex flex-col items-center justify-center p-6 w-full">
+    <main class="flex-1 flex flex-col items-center justify-center p-4 md:p-6 w-full">
 
         <div class="mb-12 text-center relative z-10">
             <h1
-                class="text-5xl md:text-7xl lg:text-8xl font-black italic tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400 drop-shadow-2xl pb-4 pr-4">
+                class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black italic tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400 drop-shadow-2xl pb-4 pr-4">
                 KRISH <span
-                    class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">FITNESS</span>&nbsp;
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">COMBAT</span>&nbsp;
             </h1>
             <div
                 class="h-1 w-32 bg-gradient-to-r from-transparent via-purple-500 to-transparent mx-auto mt-2 rounded-full opacity-80">
             </div>
-            <p class="text-gray-400 mt-3 tracking-[0.5em] text-sm font-bold uppercase">Combat & Performance Center</p>
+            <p class="text-gray-400 mt-3 tracking-[0.5em] text-sm font-bold uppercase">Fitness & Performance Center</p>
         </div>
 
         <div id="section-attendance" class="block w-full max-w-7xl">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12">
 
                 <!-- Check In Box -->
                 <div
-                    class="bg-gray-900/60 backdrop-blur-xl p-6 md:p-10 rounded-3xl shadow-2xl border border-white/10 flex flex-col items-center justify-center text-center relative z-10 group">
+                    class="bg-gray-900/60 backdrop-blur-xl p-6 sm:p-8 md:p-10 rounded-3xl shadow-2xl border border-white/10 flex flex-col items-center justify-center text-center relative z-10 group">
                     <div
                         class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent rounded-3xl pointer-events-none">
                     </div>
@@ -86,9 +86,10 @@
 
                 <!-- Live Log -->
                 <div
-                    class="bg-gray-900/60 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 overflow-hidden flex flex-col h-full relative z-10">
-                    <div class="px-8 py-6 border-b border-white/5 bg-white/5 flex justify-between items-center">
-                        <h3 class="font-bold text-gray-200 text-lg">Today's Live Log</h3>
+                    class="bg-gray-900/60 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 overflow-hidden flex flex-col h-full relative z-10 min-h-[400px]">
+                    <div
+                        class="px-5 py-5 md:px-8 md:py-6 border-b border-white/5 bg-white/5 flex justify-between items-center">
+                        <h3 class="font-bold text-gray-200 text-base md:text-lg">Today's Live Log</h3>
                         <span
                             class="bg-green-900/30 text-green-400 text-xs px-3 py-1 rounded-full animate-pulse font-bold uppercase tracking-wide">Live
                             Feed</span>
@@ -97,17 +98,17 @@
                         <table class="w-full text-left">
                             <tbody id="attendance-log-body">
                                 <tr class="border-b border-white/5 hover:bg-white/5 transition-colors group">
-                                    <td class="px-8 py-5 flex items-center">
+                                    <td class="px-5 py-4 md:px-8 md:py-5 flex items-center">
                                         <div
-                                            class="h-12 w-12 rounded-full bg-blue-900/30 text-blue-400 flex items-center justify-center font-bold mr-4 text-lg">
+                                            class="h-10 w-10 md:h-12 md:w-12 rounded-full bg-blue-900/30 text-blue-400 flex items-center justify-center font-bold mr-3 md:mr-4 text-sm md:text-lg">
                                             SP</div>
                                         <div>
-                                            <p class="font-bold text-gray-200 text-lg">Supun Perera</p>
-                                            <p class="text-sm text-gray-500">ID: 1005</p>
+                                            <p class="font-bold text-gray-200 text-base md:text-lg">Supun Perera</p>
+                                            <p class="text-xs md:text-sm text-gray-500">ID: 1005</p>
                                         </div>
                                     </td>
-                                    <td class="px-8 py-5 text-right">
-                                        <p class="text-gray-300 font-mono text-lg">08:30 AM</p>
+                                    <td class="px-5 py-4 md:px-8 md:py-5 text-right">
+                                        <p class="text-gray-300 font-mono text-sm md:text-lg">08:30 AM</p>
                                         <span
                                             class="text-xs text-green-400 font-bold bg-green-900/30 px-2 py-1 rounded">Checked
                                             In</span>
@@ -124,7 +125,7 @@
     </main>
 
     <footer class="text-center py-4 text-gray-400 text-sm">
-        <p>&copy; 2024 Antigravity Fitness Management</p>
+        <p>&copy; 2026 Krish Combat Management</p>
     </footer>
 
     <!-- Full Screen Greeting Overlay -->
