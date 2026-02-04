@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Antigravity Fitness - Management System</title>
+    <title>Antigravity Fitness - Check-In Kiosk</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
@@ -25,134 +25,121 @@
     </script>
 </head>
 
-<body class="bg-gray-100 font-sans antialiased">
+<body class="bg-gray-100 font-sans antialiased h-screen flex flex-col">
 
-    <div class="flex h-screen overflow-hidden">
-        <aside class="w-64 bg-dark text-white hidden md:flex flex-col shadow-xl">
-            <div class="h-16 flex items-center justify-center border-b border-gray-700">
-                <h1 class="text-2xl font-bold text-brand uppercase tracking-wider"><i
-                        class="fas fa-rocket mr-2"></i>Antigravity</h1>
+    <main class="flex-1 flex flex-col items-center justify-center p-6 w-full">
+
+        <div class="mb-8 text-center animate-pulse">
+            <h1 class="text-4xl font-bold text-brand uppercase tracking-widest"><i
+                    class="fas fa-rocket mr-3"></i>Antigravity Fitness</h1>
+            <p class="text-gray-500 mt-2">Member Self-Service Kiosk</p>
+        </div>
+
+        <div id="section-attendance" class="block w-full max-w-7xl">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+
+                <!-- Check In Box -->
+                <div
+                    class="bg-white p-12 rounded-3xl shadow-2xl border border-gray-200 flex flex-col items-center justify-center text-center transform hover:scale-105 transition-transform duration-300">
+                    <div class="bg-gray-100 p-6 rounded-full mb-6">
+                        <i class="fas fa-fingerprint text-7xl text-brand"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Member Check-In</h2>
+                    <p class="text-gray-500 mb-8 text-lg">Scan QR code or enter Member ID</p>
+
+                    <div class="w-full relative">
+                        <input type="number" id="member-id-input" placeholder="Enter ID (Try 1001)"
+                            class="w-full px-6 py-5 text-2xl text-center border-2 border-gray-300 rounded-2xl focus:outline-none focus:border-brand transition-colors shadow-inner"
+                            onkeypress="handleEnter(event)" autofocus>
+                        <button onclick="markAttendance()"
+                            class="mt-6 w-full bg-brand text-white font-bold py-4 text-xl rounded-2xl hover:bg-purple-800 transition shadow-lg flex items-center justify-center">
+                            <i class="fas fa-check-circle mr-3"></i> MARK ATTENDANCE
+                        </button>
+                    </div>
+                    <p class="mt-8 text-sm text-gray-400">System Ready • Online</p>
+                </div>
+
+                <!-- Live Log -->
+                <div
+                    class="bg-white rounded-3xl shadow-2xl border border-gray-200 overflow-hidden flex flex-col h-full">
+                    <div class="px-8 py-6 border-b border-gray-100 bg-gray-50 flex justify-between items-center">
+                        <h3 class="font-bold text-gray-700 text-lg">Today's Live Log</h3>
+                        <span
+                            class="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full animate-pulse font-bold uppercase tracking-wide">Live
+                            Feed</span>
+                    </div>
+                    <div class="overflow-y-auto flex-1 p-0">
+                        <table class="w-full text-left">
+                            <tbody id="attendance-log-body">
+                                <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                                    <td class="px-8 py-5 flex items-center">
+                                        <div
+                                            class="h-12 w-12 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold mr-4 text-lg">
+                                            SP</div>
+                                        <div>
+                                            <p class="font-bold text-gray-800 text-lg">Supun Perera</p>
+                                            <p class="text-sm text-gray-500">ID: 1005</p>
+                                        </div>
+                                    </td>
+                                    <td class="px-8 py-5 text-right">
+                                        <p class="text-gray-800 font-mono text-lg">08:30 AM</p>
+                                        <span
+                                            class="text-xs text-green-500 font-bold bg-green-50 px-2 py-1 rounded">Checked
+                                            In</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
             </div>
-            <nav class="flex-1 px-4 py-6 space-y-2">
-                <button onclick="showSection('dashboard')" id="nav-dashboard"
-                    class="w-full flex items-center px-4 py-3 bg-brand text-white rounded-lg transition-colors">
-                    <i class="fas fa-tachometer-alt w-6"></i>
-                    <span class="font-medium">Dashboard</span>
-                </button>
-                <button onclick="showSection('attendance')" id="nav-attendance"
-                    class="w-full flex items-center px-4 py-3 text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-colors">
-                    <i class="fas fa-qrcode w-6"></i>
-                    <span class="font-medium">Mark Attendance</span>
-                </button>
-                <a href="#"
-                    class="flex items-center px-4 py-3 text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-colors">
-                    <i class="fas fa-users w-6"></i>
-                    <span class="font-medium">Members</span>
-                </a>
-            </nav>
-        </aside>
+        </div>
 
-        <div class="flex-1 flex flex-col overflow-hidden">
-            <header class="h-16 bg-white shadow-sm flex items-center justify-between px-6 z-10">
-                <h2 class="text-xl font-bold text-gray-700" id="page-title">Dashboard Overview</h2>
-                <div class="flex items-center">
-                    <span class="text-gray-500 text-sm mr-4">Reception Desk</span>
-                    <div class="h-10 w-10 rounded-full bg-brand text-white flex items-center justify-center font-bold">
-                        AG
-                    </div>
+    </main>
+
+    <footer class="text-center py-4 text-gray-400 text-sm">
+        <p>&copy; 2024 Antigravity Fitness Management</p>
+    </footer>
+
+    <!-- Full Screen Greeting Overlay -->
+    <div id="greeting-overlay"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-xl hidden flex-col transition-all duration-300 opacity-0 pointer-events-none">
+
+        <div class="relative z-10 text-center transform transition-all duration-500 scale-90" id="greeting-content">
+
+            <!-- Avatar Ring -->
+            <div class="mb-8 relative inline-block">
+                <div class="absolute inset-0 bg-brand blur-2xl opacity-50 rounded-full animate-pulse"></div>
+                <div class="relative h-40 w-40 rounded-full bg-gradient-to-br from-brand to-purple-900 icon-shine text-white text-7xl flex items-center justify-center font-bold mx-auto border-4 border-white/10 shadow-2xl"
+                    id="greeting-avatar">
+                    SP
                 </div>
-            </header>
+            </div>
 
-            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
+            <!-- Text Content -->
+            <h2 class="text-3xl text-gray-400 font-light mb-2 tracking-wide" id="greeting-time">Good Morning,</h2>
+            <h1 class="text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 mb-8 tracking-tight drop-shadow-lg"
+                id="greeting-name">Supun Perera</h1>
 
-                <div id="section-dashboard" class="block">
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                        <div class="bg-white rounded-xl shadow-sm p-6 border-l-4 border-brand">
-                            <div class="flex justify-between">
-                                <div>
-                                    <p class="text-sm text-gray-500">Total Members</p>
-                                    <p class="text-2xl font-bold text-gray-800">850</p>
-                                </div>
-                                <div class="p-3 bg-purple-100 rounded-full text-brand"><i
-                                        class="fas fa-users text-xl"></i></div>
-                            </div>
-                        </div>
-                        <div class="bg-white rounded-xl shadow-sm p-6 border-l-4 border-green-500">
-                            <div class="flex justify-between">
-                                <div>
-                                    <p class="text-sm text-gray-500">Checked In Today</p>
-                                    <p class="text-2xl font-bold text-gray-800" id="stat-checkins">12</p>
-                                </div>
-                                <div class="p-3 bg-green-100 rounded-full text-green-600"><i
-                                        class="fas fa-walking text-xl"></i></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white p-10 rounded-xl text-center shadow-sm">
-                        <img src="https://cdn-icons-png.flaticon.com/512/3079/3079165.png"
-                            class="w-32 mx-auto mb-4 opacity-50">
-                        <h3 class="text-xl text-gray-500">Performance Charts Loading...</h3>
-                        <p class="text-sm text-gray-400">System is connecting to live data.</p>
-                    </div>
-                </div>
+            <!-- Status Badge -->
+            <div id="greeting-status"
+                class="inline-flex items-center px-8 py-3 rounded-full text-2xl font-bold bg-green-500/20 text-green-400 border border-green-500/50 shadow-[0_0_30px_rgba(34,197,94,0.3)] mb-8 backdrop-blur-sm">
+                <i class="fas fa-check-circle mr-3"></i> <span>Check-In Successful</span>
+            </div>
 
-                <div id="section-attendance" class="hidden">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Expiry Info -->
+            <div class="bg-white/5 rounded-2xl p-6 backdrop-blur-md border border-white/10 max-w-md mx-auto">
+                <p id="greeting-msg" class="text-xl text-gray-400">Next payment date is in <span
+                        class="text-brand font-bold text-2xl">12 days</span>.</p>
+            </div>
 
-                        <div
-                            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 flex flex-col items-center justify-center text-center">
-                            <div class="bg-gray-100 p-4 rounded-full mb-4">
-                                <i class="fas fa-fingerprint text-6xl text-brand"></i>
-                            </div>
-                            <h2 class="text-2xl font-bold text-gray-800 mb-2">Member Check-In</h2>
-                            <p class="text-gray-500 mb-6">Scan QR code or enter Member ID</p>
+        </div>
 
-                            <div class="w-full max-w-sm relative">
-                                <input type="number" id="member-id-input" placeholder="Enter ID (Try 1001 or 1002)"
-                                    class="w-full px-4 py-4 text-xl text-center border-2 border-gray-300 rounded-xl focus:outline-none focus:border-brand transition-colors"
-                                    onkeypress="handleEnter(event)">
-                                <button onclick="markAttendance()"
-                                    class="mt-4 w-full bg-brand text-white font-bold py-3 rounded-xl hover:bg-purple-800 transition shadow-md">
-                                    CHECK IN
-                                </button>
-                            </div>
-                            <p class="mt-4 text-xs text-gray-400">System Ready • V 1.0.2</p>
-                        </div>
-
-                        <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
-                            <div
-                                class="px-6 py-4 border-b border-gray-100 bg-gray-50 flex justify-between items-center">
-                                <h3 class="font-bold text-gray-700">Today's Live Log</h3>
-                                <span
-                                    class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full animate-pulse">Live</span>
-                            </div>
-                            <div class="overflow-y-auto h-96">
-                                <table class="w-full text-left">
-                                    <tbody id="attendance-log-body">
-                                        <tr class="border-b border-gray-100">
-                                            <td class="px-6 py-4 flex items-center">
-                                                <div
-                                                    class="h-10 w-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold mr-3">
-                                                    SP</div>
-                                                <div>
-                                                    <p class="font-bold text-gray-800">Supun Perera</p>
-                                                    <p class="text-xs text-gray-500">ID: 1005</p>
-                                                </div>
-                                            </td>
-                                            <td class="px-6 py-4 text-right">
-                                                <p class="text-gray-800 font-mono">08:30 AM</p>
-                                                <span class="text-xs text-green-500">On Time</span>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </main>
+        <!-- Background Particles/Decorations -->
+        <div class="absolute inset-0 z-0 overflow-hidden opacity-20">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand rounded-full filter blur-[100px]"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600 rounded-full filter blur-[100px]"></div>
         </div>
     </div>
 

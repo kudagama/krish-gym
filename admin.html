@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antigravity Fitness - Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#7C3AED', // Antigravity Purple
+                        dark: '#0F172A',  // Slate-900
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-100 font-sans antialiased">
+
+    <div class="flex h-screen overflow-hidden">
+        <aside class="w-64 bg-dark text-white hidden md:flex flex-col shadow-xl">
+            <div class="h-16 flex items-center justify-center border-b border-gray-700">
+                <h1 class="text-2xl font-bold text-brand uppercase tracking-wider"><i
+                        class="fas fa-rocket mr-2"></i>Antigravity</h1>
+            </div>
+            <nav class="flex-1 px-4 py-6 space-y-2">
+                <div id="nav-dashboard"
+                    class="w-full flex items-center px-4 py-3 bg-brand text-white rounded-lg transition-colors cursor-default">
+                    <i class="fas fa-tachometer-alt w-6"></i>
+                    <span class="font-medium">Dashboard</span>
+                </div>
+
+                <a href="#"
+                    class="flex items-center px-4 py-3 text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-colors">
+                    <i class="fas fa-users w-6"></i>
+                    <span class="font-medium">Members</span>
+                </a>
+            </nav>
+        </aside>
+
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <header class="h-16 bg-white shadow-sm flex items-center justify-between px-6 z-10">
+                <h2 class="text-xl font-bold text-gray-700" id="page-title">Admin Dashboard</h2>
+                <div class="flex items-center">
+                    <span class="text-gray-500 text-sm mr-4">Reception Desk</span>
+                    <div class="h-10 w-10 rounded-full bg-brand text-white flex items-center justify-center font-bold">
+                        AG
+                    </div>
+                </div>
+            </header>
+
+            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
+
+                <div id="section-dashboard" class="block">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                        <div class="bg-white rounded-xl shadow-sm p-6 border-l-4 border-brand">
+                            <div class="flex justify-between">
+                                <div>
+                                    <p class="text-sm text-gray-500">Total Members</p>
+                                    <p class="text-2xl font-bold text-gray-800">850</p>
+                                </div>
+                                <div class="p-3 bg-purple-100 rounded-full text-brand"><i
+                                        class="fas fa-users text-xl"></i></div>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-sm p-6 border-l-4 border-green-500">
+                            <div class="flex justify-between">
+                                <div>
+                                    <p class="text-sm text-gray-500">Checked In Today</p>
+                                    <p class="text-2xl font-bold text-gray-800" id="stat-checkins">12</p>
+                                </div>
+                                <div class="p-3 bg-green-100 rounded-full text-green-600"><i
+                                        class="fas fa-walking text-xl"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-10 rounded-xl text-center shadow-sm">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3079/3079165.png"
+                            class="w-32 mx-auto mb-4 opacity-50">
+                        <h3 class="text-xl text-gray-500">Performance Charts Loading...</h3>
+                        <p class="text-sm text-gray-400">System is connecting to live data.</p>
+                    </div>
+                </div>
+
+
+
+            </main>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
