@@ -1,17 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Krish Combat - Check-In Kiosk</title>
+    <title>Krish Combat & Fitness</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-
     <script>
         tailwind.config = {
             theme: {
@@ -20,8 +17,7 @@
                         sans: ['Outfit', 'sans-serif'],
                     },
                     colors: {
-                        brand: '#ffffff', // White for logo contrast
-                        accent: '#7C3AED', // Keep accent color
+                        brand: '#7C3AED',
                         dark: '#0F172A',
                     }
                 }
@@ -30,147 +26,235 @@
     </script>
 </head>
 
-<body class="bg-[#0b0f19] font-sans antialiased min-h-screen flex flex-col text-white overflow-y-auto relative">
-    <!-- Background Glow -->
-    <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-900/20 rounded-full blur-[120px]"></div>
-        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-900/20 rounded-full blur-[120px]"></div>
-    </div>
+<body class="bg-[#0b0f19] font-sans antialiased text-white overflow-x-hidden">
 
-    <main class="flex-1 flex flex-col items-center justify-center p-4 md:p-6 w-full">
+    <!-- Navbar -->
+    <nav
+        class="fixed w-full z-50 transition-all duration-300 bg-[#0b0f19]/80 backdrop-blur-md border-b border-white/5 py-4">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="group">
+                <h1
+                    class="text-2xl font-black italic tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400 group-hover:opacity-80 transition-opacity pr-2">
+                    KRISH <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">COMBAT</span>
+                </h1>
+            </a>
 
-        <div class="mb-12 text-center relative z-10">
-            <h1
-                class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black italic tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400 drop-shadow-2xl pb-4 pr-4">
-                KRISH <span
-                    class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">COMBAT</span>&nbsp;
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="text-gray-300 hover:text-white font-medium transition-colors">Home</a>
+                <a href="#programs" class="text-gray-300 hover:text-white font-medium transition-colors">Programs</a>
+                <a href="#trainers" class="text-gray-300 hover:text-white font-medium transition-colors">Trainers</a>
+                <a href="#contact" class="text-gray-300 hover:text-white font-medium transition-colors">Location</a>
+            </div>
+
+            <!-- CTA -->
+            <div class="hidden md:block">
+                <a href="#join"
+                    class="px-6 py-2.5 bg-brand hover:bg-purple-600 rounded-full font-bold text-sm transition-all shadow-lg shadow-purple-500/30 transform hover:scale-105">
+                    JOIN NOW
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-white text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <!-- Background Glows -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+            <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-purple-900/30 rounded-full blur-[120px]">
+            </div>
+            <div class="absolute bottom-[10%] right-[-10%] w-[50%] h-[50%] bg-blue-900/20 rounded-full blur-[120px]">
+            </div>
+        </div>
+
+        <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
+            <p class="text-brand font-bold tracking-[0.3em] text-sm md:text-base mb-6 animate-pulse">EST. 2026</p>
+            <h1 class="text-5xl md:text-8xl font-black italic tracking-tighter mb-6 leading-tight">
+                <span class="block text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400">FORGE
+                    YOUR</span>
+                <span
+                    class="block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-blue-500 to-purple-400 bg-[length:200%_auto] animate-text">LEGACY</span>
             </h1>
-            <div
-                class="h-1 w-32 bg-gradient-to-r from-transparent via-purple-500 to-transparent mx-auto mt-2 rounded-full opacity-80">
+            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+                Experience the ultimate fusion of combat sports and high-performance fitness.
+                State-of-the-art equipment, elite coaching, and a community that pushes you further.
+            </p>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+                <a href="#join"
+                    class="w-full md:w-auto px-8 py-4 bg-white text-black rounded-full font-black text-lg transition-transform hover:scale-105 hover:bg-gray-200">
+                    START TRIAL
+                </a>
+                <a href="#programs"
+                    class="w-full md:w-auto px-8 py-4 bg-transparent border border-white/20 hover:border-white hover:bg-white/5 rounded-full font-bold text-lg transition-all">
+                    EXPLORE PROGRAMS
+                </a>
             </div>
-            <p class="text-gray-400 mt-3 tracking-[0.5em] text-sm font-bold uppercase">Fitness & Performance Center</p>
-        </div>
 
-        <div id="section-attendance" class="block w-full max-w-7xl">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12">
-
-                <!-- Check In Box -->
-                <div
-                    class="bg-gray-900/60 backdrop-blur-xl p-6 sm:p-8 md:p-10 rounded-3xl shadow-2xl border border-white/10 flex flex-col items-center justify-center text-center relative z-10 group">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent rounded-3xl pointer-events-none">
-                    </div>
-
-                    <div
-                        class="bg-gray-800/50 p-4 md:p-6 rounded-full mb-6 border border-white/5 group-hover:scale-110 transition-transform duration-500">
-                        <i class="fas fa-fingerprint text-5xl md:text-7xl text-white/90"></i>
-                    </div>
-                    <h2 class="text-3xl font-bold text-white mb-2 tracking-wide">Member Access</h2>
-                    <p class="text-gray-400 mb-8 text-lg font-light">Scan QR code or enter your ID below</p>
-
-                    <div class="w-full relative">
-                        <input type="number" id="member-id-input" placeholder="Member ID"
-                            class="w-full px-6 py-5 text-xl md:text-3xl text-center bg-gray-950/50 text-white border-2 border-white/10 rounded-2xl focus:outline-none focus:border-purple-500 focus:ring-4 focus:ring-purple-500/20 transition-all shadow-inner placeholder-gray-600 font-bold tracking-widest"
-                            onkeypress="handleEnter(event)" autofocus>
-
-                        <button onclick="markAttendance()"
-                            class="mt-6 w-full bg-white text-gray-900 font-bold py-4 text-xl rounded-2xl hover:bg-gray-200 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)] flex items-center justify-center transform active:scale-95">
-                            <i class="fas fa-check-circle mr-3"></i> MARK ATTENDANCE
-                        </button>
-                    </div>
-                    <p
-                        class="mt-8 text-xs text-gray-500 uppercase tracking-widest font-semibold flex items-center gap-2">
-                        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> System Online
-                    </p>
+            <!-- Floating Stats -->
+            <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-white/5 pt-10">
+                <div>
+                    <h3 class="text-3xl font-black text-white">500+</h3>
+                    <p class="text-gray-500 text-sm tracking-wider uppercase">Members</p>
                 </div>
+                <div>
+                    <h3 class="text-3xl font-black text-white">24/7</h3>
+                    <p class="text-gray-500 text-sm tracking-wider uppercase">Access</p>
+                </div>
+                <div>
+                    <h3 class="text-3xl font-black text-white">15+</h3>
+                    <p class="text-gray-500 text-sm tracking-wider uppercase">Expert Coaches</p>
+                </div>
+                <div>
+                    <h3 class="text-3xl font-black text-white">100%</h3>
+                    <p class="text-gray-500 text-sm tracking-wider uppercase">Results</p>
+                </div>
+            </div>
+        </div>
+    </header>
 
-                <!-- Live Log -->
+    <!-- Programs Section -->
+    <section id="programs" class="py-24 relative bg-black/20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black italic mb-4">OUR PROGRAMS</h2>
+                <div class="h-1 w-24 bg-brand mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
                 <div
-                    class="bg-gray-900/60 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 overflow-hidden flex flex-col h-full relative z-10 min-h-[400px]">
+                    class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gray-900/50 hover:bg-gray-900/80 transition-all duration-500">
                     <div
-                        class="px-5 py-5 md:px-8 md:py-6 border-b border-white/5 bg-white/5 flex justify-between items-center">
-                        <h3 class="font-bold text-gray-200 text-base md:text-lg">Today's Live Log</h3>
-                        <span
-                            class="bg-green-900/30 text-green-400 text-xs px-3 py-1 rounded-full animate-pulse font-bold uppercase tracking-wide">Live
-                            Feed</span>
+                        class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10 opacity-60">
                     </div>
-                    <div class="overflow-y-auto flex-1 p-0">
-                        <table class="w-full text-left">
-                            <tbody id="attendance-log-body">
-                                <tr class="border-b border-white/5 hover:bg-white/5 transition-colors group">
-                                    <td class="px-5 py-4 md:px-8 md:py-5 flex items-center">
-                                        <div
-                                            class="h-10 w-10 md:h-12 md:w-12 rounded-full bg-blue-900/30 text-blue-400 flex items-center justify-center font-bold mr-3 md:mr-4 text-sm md:text-lg">
-                                            SP</div>
-                                        <div>
-                                            <p class="font-bold text-gray-200 text-base md:text-lg">Supun Perera</p>
-                                            <p class="text-xs md:text-sm text-gray-500">ID: 1005</p>
-                                        </div>
-                                    </td>
-                                    <td class="px-5 py-4 md:px-8 md:py-5 text-right">
-                                        <p class="text-gray-300 font-mono text-sm md:text-lg">08:30 AM</p>
-                                        <span
-                                            class="text-xs text-green-400 font-bold bg-green-900/30 px-2 py-1 rounded">Checked
-                                            In</span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <!-- Placeholder Image -->
+                    <div
+                        class="h-80 w-full bg-gray-800 group-hover:scale-110 transition-transform duration-700 bg-[url('https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?q=80&w=2669&auto=format&fit=crop')] bg-cover bg-center">
+                    </div>
+
+                    <div class="absolute bottom-0 left-0 w-full p-8 z-20">
+                        <h3
+                            class="text-2xl font-black italic mb-2 uppercase group-hover:text-purple-400 transition-colors">
+                            Muay Thai</h3>
+                        <p
+                            class="text-gray-300 text-sm mb-4 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            Master the art of 8 limbs with professional strikers. High intensity pads, sparring, and
+                            conditioning.
+                        </p>
+                        <span class="text-white font-bold text-sm border-b border-white pb-1">LEARN MORE</span>
                     </div>
                 </div>
 
+                <!-- Card 2 -->
+                <div
+                    class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gray-900/50 hover:bg-gray-900/80 transition-all duration-500">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10 opacity-60">
+                    </div>
+                    <div
+                        class="h-80 w-full bg-gray-800 group-hover:scale-110 transition-transform duration-700 bg-[url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2670&auto=format&fit=crop')] bg-cover bg-center">
+                    </div>
+
+                    <div class="absolute bottom-0 left-0 w-full p-8 z-20">
+                        <h3
+                            class="text-2xl font-black italic mb-2 uppercase group-hover:text-blue-400 transition-colors">
+                            Strength & Conditioning</h3>
+                        <p
+                            class="text-gray-300 text-sm mb-4 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            Build raw power and athletic performance with our Olympic lifting and functional fitness
+                            zones.
+                        </p>
+                        <span class="text-white font-bold text-sm border-b border-white pb-1">LEARN MORE</span>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div
+                    class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gray-900/50 hover:bg-gray-900/80 transition-all duration-500">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10 opacity-60">
+                    </div>
+                    <div
+                        class="h-80 w-full bg-gray-800 group-hover:scale-110 transition-transform duration-700 bg-[url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=2670&auto=format&fit=crop')] bg-cover bg-center">
+                    </div>
+
+                    <div class="absolute bottom-0 left-0 w-full p-8 z-20">
+                        <h3
+                            class="text-2xl font-black italic mb-2 uppercase group-hover:text-green-400 transition-colors">
+                            Cardio & HIIT</h3>
+                        <p
+                            class="text-gray-300 text-sm mb-4 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            Burn fat and boost endurance with high-energy group classes designed to push your limits.
+                        </p>
+                        <span class="text-white font-bold text-sm border-b border-white pb-1">LEARN MORE</span>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
 
-    </main>
+    <!-- Footer -->
+    <footer class="bg-[#05080f] border-t border-white/5 py-12 md:py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
+                <div class="mb-8 md:mb-0">
+                    <h2 class="text-3xl font-black italic text-white mb-2">KRISH <span class="text-brand">COMBAT</span>
+                    </h2>
+                    <p class="text-gray-500 max-w-sm">The premier destination for martial arts and fitness excellence in
+                        the city.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#"
+                        class="h-12 w-12 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-brand hover:scale-110 transition-all">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#"
+                        class="h-12 w-12 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-blue-600 hover:scale-110 transition-all">
+                        <i class="fab fa-facebook-f text-xl"></i>
+                    </a>
+                    <a href="#"
+                        class="h-12 w-12 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-green-500 hover:scale-110 transition-all">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                    </a>
+                </div>
+            </div>
 
-    <footer class="text-center py-4 text-gray-400 text-sm">
-        <p>&copy; 2026 Krish Combat Management</p>
+            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between text-gray-500 text-sm">
+                <p>&copy; 2026 Krish Combat & Fitness. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white">Privacy Policy</a>
+                    <a href="#" class="hover:text-white">Terms of Service</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
-    <!-- Full Screen Greeting Overlay -->
-    <div id="greeting-overlay"
-        class="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-xl hidden flex-col transition-all duration-300 opacity-0 pointer-events-none">
+    <style>
+        @keyframes text {
+            0% {
+                background-position: 0% 50%;
+            }
 
-        <div class="relative z-10 text-center transform transition-all duration-500 scale-90" id="greeting-content">
+            50% {
+                background-position: 100% 50%;
+            }
 
-            <!-- Avatar Ring -->
-            <div class="mb-8 relative inline-block">
-                <div class="absolute inset-0 bg-brand blur-2xl opacity-50 rounded-full animate-pulse"></div>
-                <div class="relative h-40 w-40 rounded-full bg-gradient-to-br from-brand to-purple-900 icon-shine text-white text-7xl flex items-center justify-center font-bold mx-auto border-4 border-white/10 shadow-2xl"
-                    id="greeting-avatar">
-                    SP
-                </div>
-            </div>
+            100% {
+                background-position: 0% 50%;
+            }
+        }
 
-            <!-- Text Content -->
-            <h2 class="text-xl md:text-3xl text-gray-400 font-light mb-2 tracking-wide" id="greeting-time">Good Morning,
-            </h2>
-            <h1 class="text-4xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 mb-8 tracking-tight drop-shadow-lg"
-                id="greeting-name">Supun Perera</h1>
-
-            <!-- Status Badge -->
-            <div id="greeting-status"
-                class="inline-flex items-center px-4 py-2 md:px-8 md:py-3 rounded-full text-lg md:text-2xl font-bold bg-green-500/20 text-green-400 border border-green-500/50 shadow-[0_0_30px_rgba(34,197,94,0.3)] mb-8 backdrop-blur-sm">
-                <i class="fas fa-check-circle mr-3"></i> <span>Check-In Successful</span>
-            </div>
-
-            <!-- Expiry Info -->
-            <div class="bg-white/5 rounded-2xl p-6 backdrop-blur-md border border-white/10 max-w-md mx-auto">
-                <p id="greeting-msg" class="text-xl text-gray-400">Next payment date is in <span
-                        class="text-brand font-bold text-2xl">12 days</span>.</p>
-            </div>
-
-        </div>
-
-        <!-- Background Particles/Decorations -->
-        <div class="absolute inset-0 z-0 overflow-hidden opacity-20">
-            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand rounded-full filter blur-[100px]"></div>
-            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600 rounded-full filter blur-[100px]"></div>
-        </div>
-    </div>
-
-    <script src="js/script.js"></script>
+        .animate-text {
+            animation: text 5s ease infinite;
+        }
+    </style>
 </body>
 
 </html>

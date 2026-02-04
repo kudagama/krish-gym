@@ -186,3 +186,42 @@ function showGreeting(member, type, daysRemaining) {
         }, 300); // Wait for transition to finish
     }, 2500); // Display time
 }
+
+// 4. Admin Panel Navigation
+function switchSection(sectionId) {
+    // 1. Update Title
+    const titles = {
+        'dashboard': 'Admin Dashboard',
+        'members': 'Member Directory',
+        'payments': 'Payments & Billing',
+        'attendance': 'Attendance Records'
+    };
+    const titleEl = document.getElementById('page-title');
+    if (titleEl) titleEl.innerText = titles[sectionId] || 'Admin Panel';
+
+    // 2. Hide All Sections
+    ['dashboard', 'members', 'payments', 'attendance'].forEach(id => {
+        const el = document.getElementById(`section-${id}`);
+        if (el) el.classList.add('hidden');
+
+        const nav = document.getElementById(`nav-${id}`);
+        if (nav) {
+            // Reset nav style
+            nav.className = "nav-item w-full flex items-center px-4 py-3 text-gray-400 hover:text-white hover:bg-white/5 rounded-xl transition-all cursor-pointer";
+        }
+    });
+
+    // 3. Show Active Section
+    const activeSection = document.getElementById(`section-${sectionId}`);
+    if (activeSection) {
+        activeSection.classList.remove('hidden');
+        // Add animation
+        activeSection.classList.add('animate-fade-in');
+    }
+
+    // 4. Highlight Nav
+    const activeNav = document.getElementById(`nav-${sectionId}`);
+    if (activeNav) {
+        activeNav.className = "nav-item w-full flex items-center px-4 py-3 bg-brand text-white rounded-xl transition-all cursor-pointer shadow-lg shadow-purple-500/20 transform scale-105";
+    }
+}
