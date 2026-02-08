@@ -14,6 +14,7 @@
 
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
@@ -29,23 +30,26 @@
     </script>
 </head>
 
-<body class="bg-[#0b0f19] font-sans antialiased text-white overflow-hidden relative">
+<body
+    class="bg-gray-50 font-sans antialiased text-slate-800 dark:bg-[#0b0f19] dark:text-white overflow-hidden relative transition-colors duration-300">
 
-    <!-- Background Glow -->
-    <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+    <!-- Background Glow (Dark Mode Only) -->
+    <div
+        class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none opacity-0 dark:opacity-100 transition-opacity duration-300">
         <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-900/20 rounded-full blur-[120px]"></div>
         <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-900/20 rounded-full blur-[120px]"></div>
     </div>
 
     <div class="flex h-screen overflow-hidden relative z-10">
         <aside
-            class="w-64 bg-gray-900/80 backdrop-blur-xl border-r border-white/5 text-white hidden md:flex flex-col shadow-2xl">
-            <div class="h-24 flex items-center justify-center border-b border-white/5 p-4">
+            class="w-64 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-r border-gray-200 dark:border-white/5 hidden md:flex flex-col shadow-2xl transition-colors duration-300">
+            <div class="h-24 flex items-center justify-center border-b border-gray-200 dark:border-white/5 p-4">
                 <div class="text-center">
                     <h1
-                        class="text-2xl font-black italic tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400 pr-2">
+                        class="text-2xl font-black italic tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-gray-700 to-gray-500 dark:from-white dark:via-gray-200 dark:to-gray-400 pr-2 transition-all">
                         KRISH <span
-                            class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">COMBAT &
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600 dark:from-purple-400 dark:to-blue-500">COMBAT
+                            &
                             FITNESS</span>&nbsp;
                     </h1>
                     <p class="text-[0.6rem] text-gray-500 font-bold uppercase tracking-[0.3em] mt-1">Admin Panel</p>
@@ -61,35 +65,42 @@
 
                 <!-- Members -->
                 <div onclick="switchSection('members')" id="nav-members"
-                    class="nav-item w-full flex items-center px-4 py-3 text-gray-400 hover:text-white hover:bg-white/5 rounded-xl transition-all cursor-pointer">
+                    class="nav-item w-full flex items-center px-4 py-3 text-gray-500 dark:text-gray-400 hover:text-brand dark:hover:text-white hover:bg-purple-50 dark:hover:bg-white/5 rounded-xl transition-all cursor-pointer">
                     <i class="fas fa-users w-6"></i>
                     <span class="font-medium">Members</span>
                 </div>
 
                 <!-- Payments -->
                 <div onclick="switchSection('payments')" id="nav-payments"
-                    class="nav-item w-full flex items-center px-4 py-3 text-gray-400 hover:text-white hover:bg-white/5 rounded-xl transition-all cursor-pointer">
+                    class="nav-item w-full flex items-center px-4 py-3 text-gray-500 dark:text-gray-400 hover:text-brand dark:hover:text-white hover:bg-purple-50 dark:hover:bg-white/5 rounded-xl transition-all cursor-pointer">
                     <i class="fas fa-credit-card w-6"></i>
                     <span class="font-medium">Payments</span>
                 </div>
 
                 <!-- Attendance -->
                 <div onclick="switchSection('attendance')" id="nav-attendance"
-                    class="nav-item w-full flex items-center px-4 py-3 text-gray-400 hover:text-white hover:bg-white/5 rounded-xl transition-all cursor-pointer">
+                    class="nav-item w-full flex items-center px-4 py-3 text-gray-500 dark:text-gray-400 hover:text-brand dark:hover:text-white hover:bg-purple-50 dark:hover:bg-white/5 rounded-xl transition-all cursor-pointer">
                     <i class="fas fa-calendar-check w-6"></i>
                     <span class="font-medium">Attendance</span>
                 </div>
             </nav>
         </aside>
 
-        <div class="flex-1 flex flex-col overflow-hidden">
+        <div class="flex-1 flex flex-col overflow-hidden bg-gray-50 dark:bg-[#0b0f19] transition-colors duration-300">
             <header
-                class="h-16 bg-gray-900/50 backdrop-blur-md shadow-sm flex items-center justify-between px-6 z-10 border-b border-white/5">
-                <h2 class="text-xl font-bold text-gray-200" id="page-title">Admin Dashboard</h2>
-                <div class="flex items-center">
-                    <span class="text-gray-500 text-sm mr-4">Reception Desk</span>
+                class="h-16 bg-white/80 dark:bg-gray-900/50 backdrop-blur-md shadow-sm flex items-center justify-between px-6 z-10 border-b border-gray-200 dark:border-white/5 transition-colors duration-300">
+                <h2 class="text-xl font-bold text-gray-800 dark:text-gray-200" id="page-title">Admin Dashboard</h2>
+                <div class="flex items-center gap-4">
+                    <!-- Theme Toggle -->
+                    <button onclick="toggleTheme()"
+                        class="p-2 rounded-full bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/10 transition-all">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+
+                    <span class="text-gray-500 text-sm hidden sm:block">Reception Desk</span>
                     <div
-                        class="h-10 w-10 rounded-full bg-slate-700 text-white flex items-center justify-center font-bold border border-gray-600">
+                        class="h-10 w-10 rounded-full bg-slate-200 dark:bg-slate-700 text-gray-700 dark:text-white flex items-center justify-center font-bold border border-gray-300 dark:border-gray-600">
                         K
                     </div>
                 </div>
@@ -97,65 +108,173 @@
 
             <main class="flex-1 overflow-x-hidden overflow-y-auto p-6 scroll-smooth">
 
-                <div id="section-dashboard" class="block">
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div id="section-dashboard" class="block space-y-8">
+                    <!-- Top Stats -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                         <div
-                            class="bg-gray-900/60 backdrop-blur-xl rounded-2xl shadow-lg p-6 border border-white/5 group hover:border-purple-500/30 transition-all">
+                            class="bg-white dark:bg-gray-900/60 backdrop-blur-xl rounded-2xl shadow-lg dark:shadow-none p-6 border border-gray-100 dark:border-white/5 group hover:border-brand/30 dark:hover:border-purple-500/30 transition-all">
                             <div class="flex justify-between">
                                 <div>
-                                    <p class="text-sm text-gray-400">Total Members</p>
-                                    <p class="text-2xl font-bold text-gray-200">850</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Total Members</p>
+                                    <p class="text-2xl font-bold text-gray-800 dark:text-gray-200">850</p>
                                 </div>
                                 <div
-                                    class="p-3 bg-purple-500/20 rounded-xl text-purple-400 group-hover:scale-110 transition-transform">
+                                    class="p-3 bg-purple-100 dark:bg-purple-500/20 rounded-xl text-brand dark:text-purple-400 group-hover:scale-110 transition-transform">
                                     <i class="fas fa-users text-xl"></i>
                                 </div>
                             </div>
                         </div>
                         <div
-                            class="bg-gray-900/60 backdrop-blur-xl rounded-2xl shadow-lg p-6 border border-white/5 group hover:border-green-500/30 transition-all">
+                            class="bg-white dark:bg-gray-900/60 backdrop-blur-xl rounded-2xl shadow-lg dark:shadow-none p-6 border border-gray-100 dark:border-white/5 group hover:border-green-500/30 transition-all">
                             <div class="flex justify-between">
                                 <div>
-                                    <p class="text-sm text-gray-400">Checked In Today</p>
-                                    <p class="text-2xl font-bold text-gray-200" id="stat-checkins">12</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Checked In Today</p>
+                                    <p class="text-2xl font-bold text-gray-800 dark:text-gray-200" id="stat-checkins">12
+                                    </p>
                                 </div>
                                 <div
-                                    class="p-3 bg-green-500/20 rounded-xl text-green-400 group-hover:scale-110 transition-transform">
+                                    class="p-3 bg-green-100 dark:bg-green-500/20 rounded-xl text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform">
                                     <i class="fas fa-walking text-xl"></i>
                                 </div>
                             </div>
                         </div>
+                        <div
+                            class="bg-white dark:bg-gray-900/60 backdrop-blur-xl rounded-2xl shadow-lg dark:shadow-none p-6 border border-gray-100 dark:border-white/5 group hover:border-orange-500/30 transition-all">
+                            <div class="flex justify-between">
+                                <div>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Pending Payments</p>
+                                    <p class="text-2xl font-bold text-gray-800 dark:text-gray-200">5</p>
+                                </div>
+                                <div
+                                    class="p-3 bg-orange-100 dark:bg-orange-500/20 rounded-xl text-orange-600 dark:text-orange-400 group-hover:scale-110 transition-transform">
+                                    <i class="fas fa-exclamation-circle text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white dark:bg-gray-900/60 backdrop-blur-xl rounded-2xl shadow-lg dark:shadow-none p-6 border border-gray-100 dark:border-white/5 group hover:border-blue-500/30 transition-all">
+                            <div class="flex justify-between">
+                                <div>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Revenue (Feb)</p>
+                                    <p class="text-2xl font-bold text-gray-800 dark:text-gray-200">425k</p>
+                                </div>
+                                <div
+                                    class="p-3 bg-blue-100 dark:bg-blue-500/20 rounded-xl text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform">
+                                    <i class="fas fa-chart-line text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div
-                        class="bg-gray-900/60 backdrop-blur-xl p-10 rounded-2xl text-center shadow-lg border border-white/5">
-                        <img src="https://cdn-icons-png.flaticon.com/512/3079/3079165.png"
-                            class="w-32 mx-auto mb-4 opacity-50">
-                        <h3 class="text-xl text-gray-500">Performance Charts Loading...</h3>
-                        <p class="text-sm text-gray-400">System is connecting to live data.</p>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <!-- Recent Activity / Attendance -->
+                        <div
+                            class="bg-white dark:bg-gray-900/60 backdrop-blur-xl rounded-2xl shadow-lg dark:shadow-none border border-gray-100 dark:border-white/5 overflow-hidden">
+                            <div
+                                class="p-6 border-b border-gray-100 dark:border-white/5 flex justify-between items-center">
+                                <h3 class="font-bold text-xl text-gray-800 dark:text-gray-200">Live Attendance</h3>
+                                <button class="text-sm text-brand font-medium hover:underline"
+                                    onclick="switchSection('attendance')">View All</button>
+                            </div>
+                            <div class="p-0">
+                                <table class="w-full text-left">
+                                    <tbody
+                                        class="divide-y divide-gray-100 dark:divide-white/5 text-gray-700 dark:text-gray-300">
+                                        <tr class="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                                            <td class="px-6 py-4 text-sm font-mono text-gray-500 dark:text-gray-400">
+                                                08:30 AM</td>
+                                            <td class="px-6 py-4 font-medium">Supun Perera <span
+                                                    class="text-xs text-gray-400 block">ID: 1005</span></td>
+                                            <td class="px-6 py-4 text-right"><span
+                                                    class="text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-400/10 px-2 py-1 rounded text-xs font-bold border border-green-200 dark:border-green-500/20">Check
+                                                    In</span></td>
+                                        </tr>
+                                        <tr class="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                                            <td class="px-6 py-4 text-sm font-mono text-gray-500 dark:text-gray-400">
+                                                08:15 AM</td>
+                                            <td class="px-6 py-4 font-medium">Kasun Kalhara <span
+                                                    class="text-xs text-gray-400 block">ID: 1002</span></td>
+                                            <td class="px-6 py-4 text-right"><span
+                                                    class="text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-400/10 px-2 py-1 rounded text-xs font-bold border border-green-200 dark:border-green-500/20">Check
+                                                    In</span></td>
+                                        </tr>
+                                        <tr class="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                                            <td class="px-6 py-4 text-sm font-mono text-gray-500 dark:text-gray-400">
+                                                07:45 AM</td>
+                                            <td class="px-6 py-4 font-medium">Malith Perera <span
+                                                    class="text-xs text-gray-400 block">ID: 1008</span></td>
+                                            <td class="px-6 py-4 text-right"><span
+                                                    class="text-orange-600 dark:text-orange-400 bg-orange-100 dark:bg-orange-400/10 px-2 py-1 rounded text-xs font-bold border border-orange-200 dark:border-orange-500/20">Check
+                                                    Out</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Recent Payments -->
+                        <div
+                            class="bg-white dark:bg-gray-900/60 backdrop-blur-xl rounded-2xl shadow-lg dark:shadow-none border border-gray-100 dark:border-white/5 overflow-hidden">
+                            <div
+                                class="p-6 border-b border-gray-100 dark:border-white/5 flex justify-between items-center">
+                                <h3 class="font-bold text-xl text-gray-800 dark:text-gray-200">Recent Transactions</h3>
+                                <button class="text-sm text-brand font-medium hover:underline"
+                                    onclick="switchSection('payments')">View All</button>
+                            </div>
+                            <div class="p-0">
+                                <table class="w-full text-left">
+                                    <tbody
+                                        class="divide-y divide-gray-100 dark:divide-white/5 text-gray-700 dark:text-gray-300">
+                                        <tr class="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                                            <td class="px-6 py-4">
+                                                <p class="font-bold text-gray-800 dark:text-white">Saveen Kudagama</p>
+                                                <p class="text-xs text-gray-500">Today, 10:30 AM</p>
+                                            </td>
+                                            <td class="px-6 py-4 font-bold text-green-600 dark:text-green-400">LKR
+                                                3,500.00</td>
+                                            <td class="px-6 py-4 text-right"><span
+                                                    class="text-xs font-bold text-gray-500 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">VISA</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                                            <td class="px-6 py-4">
+                                                <p class="font-bold text-gray-800 dark:text-white">Nimal Siripala</p>
+                                                <p class="text-xs text-gray-500">Yesterday, 4:15 PM</p>
+                                            </td>
+                                            <td class="px-6 py-4 font-bold text-green-600 dark:text-green-400">LKR
+                                                12,000.00</td>
+                                            <td class="px-6 py-4 text-right"><span
+                                                    class="text-xs font-bold text-gray-500 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">CASH</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- MEMBERS SECTION -->
                 <div id="section-members" class="hidden">
                     <div
-                        class="bg-gray-900/60 backdrop-blur-xl rounded-2xl shadow-lg border border-white/5 overflow-hidden">
+                        class="bg-white dark:bg-gray-900/60 backdrop-blur-xl rounded-2xl shadow-lg dark:shadow-none border border-gray-100 dark:border-white/5 overflow-hidden transition-all duration-300">
                         <div
-                            class="p-6 border-b border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-                            <h3 class="font-bold text-xl">Member Directory</h3>
+                            class="p-6 border-b border-gray-100 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                            <h3 class="font-bold text-xl text-gray-800 dark:text-gray-200">Member Directory</h3>
                             <div class="flex items-center gap-3 w-full md:w-auto">
                                 <div class="relative">
                                     <i
                                         class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
                                     <input type="text" placeholder="Search members..."
-                                        class="bg-black/20 border border-white/10 text-white text-sm rounded-xl pl-10 pr-4 py-2 focus:ring-2 focus:ring-purple-500/50 outline-none w-full md:w-64 placeholder-gray-600">
+                                        class="bg-gray-100 dark:bg-black/20 border border-gray-200 dark:border-white/10 text-gray-800 dark:text-white text-sm rounded-xl pl-10 pr-4 py-2 focus:ring-2 focus:ring-brand/50 outline-none w-full md:w-64 placeholder-gray-500 dark:placeholder-gray-600">
                                 </div>
                                 <select
-                                    class="bg-black/20 border border-white/10 text-white text-sm rounded-xl px-4 py-2 focus:ring-2 focus:ring-purple-500/50 outline-none cursor-pointer">
+                                    class="bg-gray-100 dark:bg-black/20 border border-gray-200 dark:border-white/10 text-gray-800 dark:text-white text-sm rounded-xl px-4 py-2 focus:ring-2 focus:ring-brand/50 outline-none cursor-pointer">
                                     <option value="all">All Status</option>
                                     <option value="active">Active</option>
                                     <option value="expired">Expired</option>
                                 </select>
-                                <button
+                                <button onclick="toggleModal('add-member-modal')"
                                     class="bg-brand hover:bg-purple-600 text-white p-2 rounded-xl text-sm font-bold transition-all shadow-lg shadow-purple-500/20 px-4">
                                     <i class="fas fa-plus mr-2"></i> Add New
                                 </button>
@@ -163,7 +282,8 @@
                         </div>
                         <div class="overflow-x-auto">
                             <table class="w-full text-left">
-                                <thead class="bg-white/5 text-gray-400 text-xs uppercase tracking-wider">
+                                <thead
+                                    class="bg-gray-50 dark:bg-white/5 text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wider">
                                     <tr>
                                         <th class="px-6 py-4">ID</th>
                                         <th class="px-6 py-4">Member</th>
@@ -172,39 +292,44 @@
                                         <th class="px-6 py-4">Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody class="divide-y divide-white/5 text-gray-300">
-                                    <tr class="hover:bg-white/5 transition-colors">
+                                <tbody
+                                    class="divide-y divide-gray-100 dark:divide-white/5 text-gray-700 dark:text-gray-300">
+                                    <tr class="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
                                         <td class="px-6 py-4 font-mono text-sm">#1001</td>
                                         <td class="px-6 py-4 flex items-center">
                                             <div
-                                                class="h-8 w-8 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center text-xs font-bold mr-3">
+                                                class="h-8 w-8 rounded-full bg-purple-100 dark:bg-purple-500/20 text-brand dark:text-purple-400 flex items-center justify-center text-xs font-bold mr-3">
                                                 S</div>
                                             Saveen Kudagama
                                         </td>
                                         <td class="px-6 py-4">Monthly Plan</td>
                                         <td class="px-6 py-4"><span
-                                                class="px-2 py-1 bg-green-500/10 text-green-400 rounded text-xs font-bold border border-green-500/20">Active</span>
+                                                class="px-2 py-1 bg-green-100 dark:bg-green-500/10 text-green-600 dark:text-green-400 rounded text-xs font-bold border border-green-200 dark:border-green-500/20">Active</span>
                                         </td>
                                         <td class="px-6 py-4 text-gray-500">
-                                            <button class="hover:text-white mr-2"><i class="fas fa-edit"></i></button>
-                                            <button class="hover:text-red-400"><i class="fas fa-trash"></i></button>
+                                            <button class="hover:text-brand dark:hover:text-white mr-2"><i
+                                                    class="fas fa-edit"></i></button>
+                                            <button class="hover:text-red-500 dark:hover:text-red-400"><i
+                                                    class="fas fa-trash"></i></button>
                                         </td>
                                     </tr>
-                                    <tr class="hover:bg-white/5 transition-colors">
+                                    <tr class="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
                                         <td class="px-6 py-4 font-mono text-sm">#1003</td>
                                         <td class="px-6 py-4 flex items-center">
                                             <div
-                                                class="h-8 w-8 rounded-full bg-orange-500/20 text-orange-400 flex items-center justify-center text-xs font-bold mr-3">
+                                                class="h-8 w-8 rounded-full bg-orange-100 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400 flex items-center justify-center text-xs font-bold mr-3">
                                                 N</div>
                                             Nimal Siripala
                                         </td>
                                         <td class="px-6 py-4">Annual Plan</td>
                                         <td class="px-6 py-4"><span
-                                                class="px-2 py-1 bg-red-500/10 text-red-400 rounded text-xs font-bold border border-red-500/20">Expired</span>
+                                                class="px-2 py-1 bg-red-100 dark:bg-red-500/10 text-red-600 dark:text-red-400 rounded text-xs font-bold border border-red-200 dark:border-red-500/20">Expired</span>
                                         </td>
                                         <td class="px-6 py-4 text-gray-500">
-                                            <button class="hover:text-white mr-2"><i class="fas fa-edit"></i></button>
-                                            <button class="hover:text-red-400"><i class="fas fa-trash"></i></button>
+                                            <button class="hover:text-brand dark:hover:text-white mr-2"><i
+                                                    class="fas fa-edit"></i></button>
+                                            <button class="hover:text-red-500 dark:hover:text-red-400"><i
+                                                    class="fas fa-trash"></i></button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -213,40 +338,124 @@
                     </div>
                 </div>
 
+                <!-- Add Member Modal -->
+                <div id="add-member-modal" class="fixed inset-0 z-50 hidden">
+                    <!-- Backdrop -->
+                    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity opacity-0"
+                        onclick="toggleModal('add-member-modal')"></div>
+
+                    <!-- Modal Content -->
+                    <div
+                        class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-lg bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-white/10 p-6 transition-all scale-95 opacity-0">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-2xl font-bold text-gray-800 dark:text-white">Add New Member</h3>
+                            <button onclick="toggleModal('add-member-modal')"
+                                class="text-gray-500 hover:text-gray-700 dark:hover:text-white transition-colors">
+                                <i class="fas fa-times text-xl"></i>
+                            </button>
+                        </div>
+
+                        <form class="space-y-4">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">First
+                                        Name</label>
+                                    <input type="text"
+                                        class="w-full bg-gray-50 dark:bg-black/20 border border-gray-300 dark:border-white/10 rounded-xl px-4 py-2 text-gray-800 dark:text-white focus:ring-2 focus:ring-brand/50 outline-none"
+                                        placeholder="John">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Last
+                                        Name</label>
+                                    <input type="text"
+                                        class="w-full bg-gray-50 dark:bg-black/20 border border-gray-300 dark:border-white/10 rounded-xl px-4 py-2 text-gray-800 dark:text-white focus:ring-2 focus:ring-brand/50 outline-none"
+                                        placeholder="Doe">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email
+                                    Address</label>
+                                <input type="email"
+                                    class="w-full bg-gray-50 dark:bg-black/20 border border-gray-300 dark:border-white/10 rounded-xl px-4 py-2 text-gray-800 dark:text-white focus:ring-2 focus:ring-brand/50 outline-none"
+                                    placeholder="john@example.com">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Phone
+                                    Number</label>
+                                <input type="tel"
+                                    class="w-full bg-gray-50 dark:bg-black/20 border border-gray-300 dark:border-white/10 rounded-xl px-4 py-2 text-gray-800 dark:text-white focus:ring-2 focus:ring-brand/50 outline-none"
+                                    placeholder="+94 7X XXX XXXX">
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label
+                                        class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Membership
+                                        Plan</label>
+                                    <select
+                                        class="w-full bg-gray-50 dark:bg-black/20 border border-gray-300 dark:border-white/10 rounded-xl px-4 py-2 text-gray-800 dark:text-white focus:ring-2 focus:ring-brand/50 outline-none cursor-pointer">
+                                        <option value="monthly">Monthly Plan</option>
+                                        <option value="quarterly">Quarterly Plan</option>
+                                        <option value="annual">Annual Plan</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Start
+                                        Date</label>
+                                    <input type="date"
+                                        class="w-full bg-gray-50 dark:bg-black/20 border border-gray-300 dark:border-white/10 rounded-xl px-4 py-2 text-gray-800 dark:text-white focus:ring-2 focus:ring-brand/50 outline-none">
+                                </div>
+                            </div>
+
+                            <button type="submit"
+                                class="w-full bg-brand hover:bg-purple-600 text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-purple-500/20 mt-6">
+                                Create Member
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
                 <!-- PAYMENTS SECTION -->
                 <div id="section-payments" class="hidden">
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                        <div class="bg-gray-900/60 backdrop-blur-xl p-6 rounded-2xl border border-white/5">
-                            <p class="text-gray-400 text-sm">Total Revenue (Feb)</p>
+                        <div
+                            class="bg-white dark:bg-gray-900/60 backdrop-blur-xl p-6 rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm dark:shadow-none">
+                            <p class="text-gray-500 dark:text-gray-400 text-sm">Total Revenue (Feb)</p>
                             <h3
-                                class="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-emerald-600">
+                                class="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-emerald-600 dark:from-green-400 dark:to-emerald-600">
                                 LKR 425,000</h3>
                         </div>
-                        <div class="bg-gray-900/60 backdrop-blur-xl p-6 rounded-2xl border border-white/5">
-                            <p class="text-gray-400 text-sm">Pending Payments</p>
-                            <h3 class="text-2xl font-bold text-orange-400">5 Members</h3>
+                        <div
+                            class="bg-white dark:bg-gray-900/60 backdrop-blur-xl p-6 rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm dark:shadow-none">
+                            <p class="text-gray-500 dark:text-gray-400 text-sm">Pending Payments</p>
+                            <h3 class="text-2xl font-bold text-orange-500 dark:text-orange-400">5 Members</h3>
                         </div>
                     </div>
 
                     <div
-                        class="bg-gray-900/60 backdrop-blur-xl rounded-2xl shadow-lg border border-white/5 overflow-hidden">
+                        class="bg-white dark:bg-gray-900/60 backdrop-blur-xl rounded-2xl shadow-lg dark:shadow-none border border-gray-100 dark:border-white/5 overflow-hidden transition-all duration-300">
                         <div
-                            class="p-6 border-b border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-                            <h3 class="font-bold text-xl">Recent Transactions</h3>
+                            class="p-6 border-b border-gray-100 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                            <h3 class="font-bold text-xl text-gray-800 dark:text-gray-200">Payment History</h3>
                             <div class="flex items-center gap-3 w-full md:w-auto">
                                 <div class="relative">
                                     <i
                                         class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
                                     <input type="text" placeholder="Search payments..."
-                                        class="bg-black/20 border border-white/10 text-white text-sm rounded-xl pl-10 pr-4 py-2 focus:ring-2 focus:ring-green-500/50 outline-none w-full md:w-48 placeholder-gray-600">
+                                        class="bg-gray-100 dark:bg-black/20 border border-gray-200 dark:border-white/10 text-gray-800 dark:text-white text-sm rounded-xl pl-10 pr-4 py-2 focus:ring-2 focus:ring-green-500/50 outline-none w-full md:w-48 placeholder-gray-500 dark:placeholder-gray-600">
                                 </div>
-                                <input type="date"
-                                    class="bg-black/20 border border-white/10 text-gray-400 text-sm rounded-xl px-3 py-2 focus:ring-2 focus:ring-green-500/50 outline-none">
+                                <button onclick="toggleModal('add-payment-modal')"
+                                    class="bg-green-600 hover:bg-green-700 text-white p-2 rounded-xl text-sm font-bold transition-all shadow-lg shadow-green-500/20 px-4">
+                                    <i class="fas fa-plus mr-2"></i> Add Payment
+                                </button>
                             </div>
                         </div>
                         <div class="overflow-x-auto">
                             <table class="w-full text-left">
-                                <thead class="bg-white/5 text-gray-400 text-xs uppercase tracking-wider">
+                                <thead
+                                    class="bg-gray-50 dark:bg-white/5 text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wider">
                                     <tr>
                                         <th class="px-6 py-4">Date</th>
                                         <th class="px-6 py-4">Member</th>
@@ -255,14 +464,18 @@
                                         <th class="px-6 py-4">Status</th>
                                     </tr>
                                 </thead>
-                                <tbody class="divide-y divide-white/5 text-gray-300">
-                                    <tr class="hover:bg-white/5 transition-colors">
-                                        <td class="px-6 py-4 text-sm text-gray-400">Today, 10:30 AM</td>
+                                <tbody
+                                    class="divide-y divide-gray-100 dark:divide-white/5 text-gray-700 dark:text-gray-300">
+                                    <tr class="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                                        <td class="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">Today, 10:30 AM
+                                        </td>
                                         <td class="px-6 py-4 font-medium">Saveen Kudagama</td>
-                                        <td class="px-6 py-4 font-bold text-green-400">LKR 3,500.00</td>
+                                        <td class="px-6 py-4 font-bold text-green-600 dark:text-green-400">LKR 3,500.00
+                                        </td>
                                         <td class="px-6 py-4 text-sm"><i class="fab fa-cc-visa mr-1"></i> Visa ****4242
                                         </td>
-                                        <td class="px-6 py-4"><span class="text-green-400 text-xs font-bold"><i
+                                        <td class="px-6 py-4"><span
+                                                class="text-green-600 dark:text-green-400 text-xs font-bold"><i
                                                     class="fas fa-check"></i> Paid</span></td>
                                     </tr>
                                 </tbody>
@@ -271,34 +484,166 @@
                     </div>
                 </div>
 
+                <!-- Add Payment Modal -->
+                <div id="add-payment-modal" class="fixed inset-0 z-50 hidden">
+                    <!-- Backdrop -->
+                    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity opacity-0"
+                        onclick="toggleModal('add-payment-modal')"></div>
+
+                    <!-- Modal Content -->
+                    <div
+                        class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-lg bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-white/10 p-6 transition-all scale-95 opacity-0">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-2xl font-bold text-gray-800 dark:text-white">Record Payment</h3>
+                            <button onclick="toggleModal('add-payment-modal')"
+                                class="text-gray-500 hover:text-gray-700 dark:hover:text-white transition-colors">
+                                <i class="fas fa-times text-xl"></i>
+                            </button>
+                        </div>
+
+                        <form class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Member
+                                    Name / ID</label>
+                                <input type="text"
+                                    class="w-full bg-gray-50 dark:bg-black/20 border border-gray-300 dark:border-white/10 rounded-xl px-4 py-2 text-gray-800 dark:text-white focus:ring-2 focus:ring-green-500/50 outline-none"
+                                    placeholder="Search member...">
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label
+                                        class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Amount</label>
+                                    <div class="relative">
+                                        <span
+                                            class="absolute left-4 top-2 text-gray-500 dark:text-gray-400 text-sm">LKR</span>
+                                        <input type="number"
+                                            class="w-full bg-gray-50 dark:bg-black/20 border border-gray-300 dark:border-white/10 rounded-xl pl-12 pr-4 py-2 text-gray-800 dark:text-white focus:ring-2 focus:ring-green-500/50 outline-none"
+                                            placeholder="0.00">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label
+                                        class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Date</label>
+                                    <input type="date"
+                                        class="w-full bg-gray-50 dark:bg-black/20 border border-gray-300 dark:border-white/10 rounded-xl px-4 py-2 text-gray-800 dark:text-white focus:ring-2 focus:ring-green-500/50 outline-none">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label
+                                        class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Method</label>
+                                    <select
+                                        class="w-full bg-gray-50 dark:bg-black/20 border border-gray-300 dark:border-white/10 rounded-xl px-4 py-2 text-gray-800 dark:text-white focus:ring-2 focus:ring-green-500/50 outline-none cursor-pointer">
+                                        <option value="cash">Cash</option>
+                                        <option value="card">Credit/Debit Card</option>
+                                        <option value="transfer">Bank Transfer</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label
+                                        class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Status</label>
+                                    <select
+                                        class="w-full bg-gray-50 dark:bg-black/20 border border-gray-300 dark:border-white/10 rounded-xl px-4 py-2 text-gray-800 dark:text-white focus:ring-2 focus:ring-green-500/50 outline-none cursor-pointer">
+                                        <option value="paid">Paid</option>
+                                        <option value="pending">Pending</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Admin
+                                    Note (Optional)</label>
+                                <textarea rows="2"
+                                    class="w-full bg-gray-50 dark:bg-black/20 border border-gray-300 dark:border-white/10 rounded-xl px-4 py-2 text-gray-800 dark:text-white focus:ring-2 focus:ring-green-500/50 outline-none"
+                                    placeholder="e.g., February Monthly Fee"></textarea>
+                            </div>
+
+                            <button type="submit"
+                                class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-green-500/20 mt-6">
+                                Record Payment
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
                 <!-- ATTENDANCE SECTION -->
                 <div id="section-attendance" class="hidden">
-                    <div
-                        class="bg-gray-900/60 backdrop-blur-xl rounded-2xl shadow-lg border border-white/5 overflow-hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                         <div
-                            class="p-6 border-b border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-                            <h3 class="font-bold text-xl">Attendance Records</h3>
+                            class="bg-white dark:bg-gray-900/60 backdrop-blur-xl p-6 rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm dark:shadow-none">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-gray-500 dark:text-gray-400 text-sm">Today's Check-ins</p>
+                                    <h3 class="text-3xl font-bold text-gray-800 dark:text-white mt-2">124</h3>
+                                    <p class="text-xs text-green-500 mt-1"><i class="fas fa-arrow-up"></i> 12% vs last
+                                        week
+                                    </p>
+                                </div>
+                                <div
+                                    class="p-3 bg-blue-100 dark:bg-blue-500/20 rounded-xl text-blue-600 dark:text-blue-400">
+                                    <i class="fas fa-user-check text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white dark:bg-gray-900/60 backdrop-blur-xl p-6 rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm dark:shadow-none">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-gray-500 dark:text-gray-400 text-sm">Currently in Gym</p>
+                                    <h3 class="text-3xl font-bold text-gray-800 dark:text-white mt-2">42</h3>
+                                    <p class="text-xs text-gray-400 mt-1">Capacity: 35%</p>
+                                </div>
+                                <div
+                                    class="p-3 bg-green-100 dark:bg-green-500/20 rounded-xl text-green-600 dark:text-green-400">
+                                    <i class="fas fa-running text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white dark:bg-gray-900/60 backdrop-blur-xl p-6 rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm dark:shadow-none">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-gray-500 dark:text-gray-400 text-sm">Peak Hour (Today)</p>
+                                    <h3 class="text-2xl font-bold text-gray-800 dark:text-white mt-2">06:00 PM</h3>
+                                    <p class="text-xs text-orange-500 mt-1">Expected: ~65 Members</p>
+                                </div>
+                                <div
+                                    class="p-3 bg-orange-100 dark:bg-orange-500/20 rounded-xl text-orange-600 dark:text-orange-400">
+                                    <i class="fas fa-clock text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-white dark:bg-gray-900/60 backdrop-blur-xl rounded-2xl shadow-lg dark:shadow-none border border-gray-100 dark:border-white/5 overflow-hidden transition-all duration-300">
+                        <div
+                            class="p-6 border-b border-gray-100 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                            <h3 class="font-bold text-xl text-gray-800 dark:text-gray-200">Attendance Records</h3>
                             <div class="flex items-center gap-3 w-full md:w-auto">
                                 <div class="relative">
                                     <i
                                         class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
                                     <input type="text" placeholder="Search by name/ID..."
-                                        class="bg-black/20 border border-white/10 text-white text-sm rounded-xl pl-10 pr-4 py-2 focus:ring-2 focus:ring-blue-500/50 outline-none w-full md:w-64 placeholder-gray-600">
+                                        class="bg-gray-100 dark:bg-black/20 border border-gray-200 dark:border-white/10 text-gray-800 dark:text-white text-sm rounded-xl pl-10 pr-4 py-2 focus:ring-2 focus:ring-blue-500/50 outline-none w-full md:w-64 placeholder-gray-500 dark:placeholder-gray-600">
                                 </div>
                                 <select
-                                    class="bg-black/20 border border-white/10 text-white text-sm rounded-xl px-4 py-2 focus:ring-2 focus:ring-blue-500/50 outline-none cursor-pointer">
+                                    class="bg-gray-100 dark:bg-black/20 border border-gray-200 dark:border-white/10 text-gray-800 dark:text-white text-sm rounded-xl px-4 py-2 focus:ring-2 focus:ring-blue-500/50 outline-none cursor-pointer">
                                     <option value="today">Today</option>
                                     <option value="yesterday">Yesterday</option>
                                     <option value="week">This Week</option>
                                     <option value="month">This Month</option>
                                 </select>
                                 <input type="date"
-                                    class="bg-black/20 border border-white/10 text-gray-400 text-sm rounded-xl px-3 py-2 focus:ring-2 focus:ring-blue-500/50 outline-none">
+                                    class="bg-gray-100 dark:bg-black/20 border border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 text-sm rounded-xl px-3 py-2 focus:ring-2 focus:ring-blue-500/50 outline-none">
                             </div>
                         </div>
                         <div class="overflow-x-auto">
                             <table class="w-full text-left">
-                                <thead class="bg-white/5 text-gray-400 text-xs uppercase tracking-wider">
+                                <thead
+                                    class="bg-gray-50 dark:bg-white/5 text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wider">
                                     <tr>
                                         <th class="px-6 py-4">Time</th>
                                         <th class="px-6 py-4">Member Name</th>
@@ -306,29 +651,33 @@
                                         <th class="px-6 py-4">Type</th>
                                     </tr>
                                 </thead>
-                                <tbody class="divide-y divide-white/5 text-gray-300">
-                                    <tr class="hover:bg-white/5 transition-colors">
-                                        <td class="px-6 py-4 text-sm font-mono text-gray-400">08:30 AM</td>
+                                <tbody
+                                    class="divide-y divide-gray-100 dark:divide-white/5 text-gray-700 dark:text-gray-300">
+                                    <tr class="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                                        <td class="px-6 py-4 text-sm font-mono text-gray-500 dark:text-gray-400">08:30
+                                            AM</td>
                                         <td class="px-6 py-4">Supun Perera</td>
                                         <td class="px-6 py-4 font-mono text-xs">1005</td>
                                         <td class="px-6 py-4"><span
-                                                class="text-green-400 bg-green-400/10 px-2 py-1 rounded text-xs border border-green-500/20">Check
+                                                class="text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-400/10 px-2 py-1 rounded text-xs border border-green-200 dark:border-green-500/20">Check
                                                 In</span></td>
                                     </tr>
-                                    <tr class="hover:bg-white/5 transition-colors">
-                                        <td class="px-6 py-4 text-sm font-mono text-gray-400">08:15 AM</td>
+                                    <tr class="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                                        <td class="px-6 py-4 text-sm font-mono text-gray-500 dark:text-gray-400">08:15
+                                            AM</td>
                                         <td class="px-6 py-4">Kasun Kalhara</td>
                                         <td class="px-6 py-4 font-mono text-xs">1002</td>
                                         <td class="px-6 py-4"><span
-                                                class="text-green-400 bg-green-400/10 px-2 py-1 rounded text-xs border border-green-500/20">Check
+                                                class="text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-400/10 px-2 py-1 rounded text-xs border border-green-200 dark:border-green-500/20">Check
                                                 In</span></td>
                                     </tr>
-                                    <tr class="hover:bg-white/5 transition-colors">
-                                        <td class="px-6 py-4 text-sm font-mono text-gray-400">07:45 AM</td>
+                                    <tr class="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                                        <td class="px-6 py-4 text-sm font-mono text-gray-500 dark:text-gray-400">07:45
+                                            AM</td>
                                         <td class="px-6 py-4">Malith Perera</td>
                                         <td class="px-6 py-4 font-mono text-xs">1008</td>
                                         <td class="px-6 py-4"><span
-                                                class="text-orange-400 bg-orange-400/10 px-2 py-1 rounded text-xs border border-orange-500/20">Check
+                                                class="text-orange-600 dark:text-orange-400 bg-orange-100 dark:bg-orange-400/10 px-2 py-1 rounded text-xs border border-orange-200 dark:border-orange-500/20">Check
                                                 Out</span></td>
                                     </tr>
                                 </tbody>
@@ -344,6 +693,56 @@
     </div>
 
     <script src="../js/script.js"></script>
+    <script>
+        // Theme Toggle Logic
+        function toggleTheme() {
+            const html = document.documentElement;
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Initialize Theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        // Modal Toggle Logic
+        function toggleModal(modalId) {
+            const modal = document.getElementById(modalId);
+            const backdrop = modal.querySelector('div:first-child');
+            const content = modal.querySelector('div:last-child');
+
+            if (modal.classList.contains('hidden')) {
+                // Open Modal
+                modal.classList.remove('hidden');
+                // Trigger reflow
+                void modal.offsetWidth;
+
+                // Add opacity/scale for animation
+                backdrop.classList.remove('opacity-0');
+                content.classList.remove('opacity-0', 'scale-95');
+                content.classList.add('scale-100');
+            } else {
+                // Close Modal
+                backdrop.classList.add('opacity-0');
+                content.classList.remove('scale-100');
+                content.classList.add('opacity-0', 'scale-95');
+
+                // Wait for animation to finish before hiding
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300);
+            }
+        }
+    </script>
 </body>
 
 </html>
